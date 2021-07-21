@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import ContactForm from './components/contactform/ContactForm';
-import ContactList from './components/contactlist/ContactList';
+// import ContactForm from './components/contactform/ContactForm';
+// import ContactList from './components/contactlist/ContactList';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
-import Filter from './components/filter/Filter';
+// import Filter from './components/filter/Filter';
 import Contacts from './components/contacts/Contacts';
 import Home from './components/home/Home';
-import UserMenu from './components/usermenu/UserMenu';
+import AppBar from './components/appbar/AppBar';
 
 import './styles.scss';
 
@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <UserMenu />
+        <AppBar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
