@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { authOperations } from '../../redux/auth/auth-operations';
 
 export class Register extends Component {
   state = {
@@ -52,4 +54,6 @@ export class Register extends Component {
   }
 }
 
-export default Register;
+const mapDispatchToProps = {};
+
+export default connect(null)(Register);
