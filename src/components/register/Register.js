@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authOperations } from '../../redux/auth/auth-operations';
+import * as authOperations from '../../redux/auth/auth-operations';
 
 export class Register extends Component {
   state = {
@@ -17,6 +17,7 @@ export class Register extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.onRegister(this.state);
     this.setState({ name: '', email: '', password: '' });
   };
 
@@ -54,6 +55,8 @@ export class Register extends Component {
   }
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+  onRegister: data => dispatch(authOperations.register(data)),
+});
 
-export default connect(null)(Register);
+export default connect(null, mapDispatchToProps)(Register);
