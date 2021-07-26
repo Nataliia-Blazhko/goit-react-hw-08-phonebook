@@ -2,8 +2,8 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import phonebookReducer from './phonebook/phonebook-reducer';
 import authReducer from './auth/auth-reducer';
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -11,20 +11,17 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 
-// const persistConfig = {
-//   key: 'contacts',
-//   storage,
-//   blacklist: ['filter'],
-// };
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 const store = configureStore({
-  // reducer: {
-  //   phonebook: persistReducer(persistConfig, phonebookReducer),
-  // },
   reducer: {
-    auth: authReducer,
+    auth: persistReducer(persistConfig, authReducer),
     phonebook: phonebookReducer,
   },
   middleware: getDefaultMiddleware({
@@ -34,8 +31,8 @@ const store = configureStore({
   }),
 });
 
-// const persistor = persistStore(store);
+const persistor = persistStore(store);
 
-// const storeWithPersistor = { store, persistor };
+const storeWithPersistor = { store, persistor };
 
-export default store;
+export default storeWithPersistor;

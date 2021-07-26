@@ -1,14 +1,17 @@
-import { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authOperations } from './redux/auth';
-import Login from './components/login/Login';
-import Register from './components/register/Register';
-import Contacts from './components/contacts/Contacts';
-import Home from './components/home/Home';
 import AppBar from './components/appbar/AppBar';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 import './styles.scss';
+
+const Home = lazy(() => import('./components/home/Home'));
+const Register = lazy(() => import('./components/register/Register'));
+const Login = lazy(() => import('./components/login/Login'));
+const Contacts = lazy(() => import('./components/contacts/Contacts'));
 
 class App extends Component {
   componentDidMount() {
@@ -19,12 +22,24 @@ class App extends Component {
     return (
       <div>
         <AppBar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/contacts" component={Contacts} />
-        </Switch>
+        <Suspense fallback={<p>Идёт загрузка...</p>}>
+          <Switch>
+            <PublicRoute exact path="/" component={Home} />
+            <PublicRoute
+              exact
+              path="/register"
+              component={Register}
+              redirectTo="/contacts"
+            />
+            <PublicRoute exact path="/login" restricted component={Login} />
+            <PrivateRoute
+              exact
+              path="/contacts"
+              component={Contacts}
+              redirectTo="/login"
+            />
+          </Switch>
+        </Suspense>
       </div>
     );
   }

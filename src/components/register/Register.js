@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as authOperations from '../../redux/auth/auth-operations';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const styles = {
+  form: {
+    display: 'block',
+    margin: '30px auto',
+  },
+  input: {
+    display: 'block',
+    marginBottom: '15px',
+    width: '350px',
+    margin: '10px auto',
+  },
+  textCenter: {
+    textAlign: 'center',
+  },
+};
 
 export class Register extends Component {
   state = {
@@ -23,34 +42,62 @@ export class Register extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Страница регистрации пользователя</h1>
-        <form onSubmit={this.handleSubmit} autoComplete="off">
-          <label htmlFor="register-name">Имя</label>
-          <input
+      <>
+        <Typography
+          style={styles.textCenter}
+          variant="h4"
+          component="h4"
+          gutterBottom
+        >
+          Страница регистрации пользователя
+        </Typography>
+        {/* <h1>Страница регистрации пользователя</h1> */}
+        <form
+          onSubmit={this.handleSubmit}
+          autoComplete="off"
+          style={styles.form}
+        >
+          <TextField
+            label="Name"
+            variant="outlined"
             onChange={this.handleInput}
             name="name"
             id="register-name"
             value={this.state.name}
+            style={styles.input}
+            fullWidth
           />
-          <label htmlFor="register-email">E-mail</label>
-          <input
+          <TextField
+            label="E-mail"
+            variant="outlined"
             onChange={this.handleInput}
             name="email"
             id="register-email"
             value={this.state.email}
+            style={styles.input}
+            fullWidth
           />
-          <label htmlFor="register-password">Пароль</label>
-          <input
+          <TextField
+            label="Password"
+            variant="outlined"
             onChange={this.handleInput}
             name="password"
             type="password"
             id="register-password"
             value={this.state.password}
+            style={styles.input}
+            fullWidth
           />
-          <button>Зарегистрироваться</button>
+          <Button
+            variant="outlined"
+            color="primary"
+            style={styles.input}
+            size="large"
+          >
+            Зарегистрироваться
+          </Button>
         </form>
-      </div>
+      </>
     );
   }
 }

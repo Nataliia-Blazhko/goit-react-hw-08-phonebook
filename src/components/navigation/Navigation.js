@@ -1,20 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getIsAuthenticated } from '../../redux/auth/auth-selectors';
 
-const Navigation = () => (
+const Navigation = ({ isAuthenticated }) => (
   <nav>
     <NavLink to="/" exact className="link" activeClassName="active-link">
       Главная
     </NavLink>
-
-    <NavLink
-      to="/contacts"
-      exact
-      className="link"
-      activeClassName="active-link"
-    >
-      Телефонная книга
-    </NavLink>
+    {isAuthenticated && (
+      <NavLink
+        to="/contacts"
+        exact
+        className="link"
+        activeClassName="active-link"
+      >
+        Телефонная книга
+      </NavLink>
+    )}
   </nav>
 );
-export default Navigation;
+
+const mapStateToProps = state => ({
+  isAuthenticated: getIsAuthenticated(state),
+});
+export default connect(mapStateToProps)(Navigation);
