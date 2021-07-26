@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Navigation from '../navigation/Navigation';
+import UserMenu from '../usermenu/UserMenu';
+import AuthNav from '../authnav/AuthNav';
+import { authSelectors } from '../../redux/auth';
 
-export class AppBar extends Component {
-  render() {
-    return (
-      <header>
-        <NavLink to="/"> Главная</NavLink>
-        <NavLink to="/contacts"> Контакты </NavLink>
-        <NavLink to="/register"> Зарегистрироваться</NavLink>
-        <NavLink to="/login"> Войти </NavLink>
-      </header>
-    );
-  }
-}
+const AppBar = ({ isAuthenticated }) => (
+  <header>
+    <Navigation />
+    {isAuthenticated ? <UserMenu /> : <AuthNav />}
+  </header>
+);
 
-export default AppBar;
+const mapStateToProps = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
+export default connect(mapStateToProps)(AppBar);

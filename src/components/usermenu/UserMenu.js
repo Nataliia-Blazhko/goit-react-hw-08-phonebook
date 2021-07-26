@@ -1,9 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { authSelectors, authOperations } from '../../redux/auth';
 
-export class UserMenu extends Component {
-  render() {
-    return <div></div>;
-  }
-}
+const UserMenu = ({ user, onLogout }) => {
+  <div>
+    <span>Welcome, {user.email}</span>
+    <button type="button" onClick={onLogout}>
+      Logout
+    </button>
+  </div>;
+};
 
-export default UserMenu;
+const mapStateToProps = state => ({
+  name: authSelectors.getUsername(state),
+});
+
+const mapDispatchToProps = {
+  onLogout: authOperations.logOut,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
