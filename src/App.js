@@ -5,6 +5,7 @@ import { authOperations } from './redux/auth';
 import AppBar from './components/appbar/AppBar';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import Container from '@material-ui/core/Container';
 
 import './styles.scss';
 
@@ -20,7 +21,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Container fixed>
         <AppBar />
         <Suspense fallback={<p>Идёт загрузка...</p>}>
           <Switch>
@@ -40,7 +41,7 @@ class App extends Component {
             />
           </Switch>
         </Suspense>
-      </div>
+      </Container>
     );
   }
 }

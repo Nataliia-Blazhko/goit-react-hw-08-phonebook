@@ -3,13 +3,33 @@ import Navigation from '../navigation/Navigation';
 import UserMenu from '../usermenu/UserMenu';
 import AuthNav from '../authnav/AuthNav';
 import { authSelectors } from '../../redux/auth';
+import MaterialAppBar from '@material-ui/core/AppBar';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
 
-const AppBar = ({ isAuthenticated }) => (
-  <header>
-    <Navigation />
-    {isAuthenticated ? <UserMenu /> : <AuthNav />}
-  </header>
-);
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    backgroundColor: '#6674e9',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+}));
+
+const AppBar = ({ isAuthenticated }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <MaterialAppBar position="static">
+        <Toolbar className={classes.appBar}>
+          <Navigation />
+          {isAuthenticated ? <UserMenu /> : <AuthNav />}
+        </Toolbar>
+      </MaterialAppBar>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: authSelectors.getIsAuthenticated(state),
