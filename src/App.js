@@ -25,14 +25,25 @@ class App extends Component {
         <AppBar />
         <Suspense fallback={<p>Идёт загрузка...</p>}>
           <Switch>
-            <PublicRoute exact path="/" component={Home} />
+            <PublicRoute
+              exact
+              path="/"
+              component={Home}
+              redirectTo="/contacts"
+            />
             <PublicRoute
               exact
               path="/register"
               component={Register}
               redirectTo="/contacts"
             />
-            <PublicRoute exact path="/login" restricted component={Login} />
+            <PublicRoute
+              exact
+              path="/login"
+              redirectTo="/contacts"
+              restricted
+              component={Login}
+            />
             <PrivateRoute
               exact
               path="/contacts"

@@ -14,10 +14,16 @@ const styles = theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '25ch',
+      // width: '25ch',
     },
   },
 });
+
+const style = {
+  w100: {
+    width: '100%',
+  },
+};
 
 export class ContactForm extends Component {
   state = {
@@ -108,15 +114,14 @@ export class ContactForm extends Component {
                   required
                 />
               </Grid>
-              <Grid item>
+              <Grid item xs={12} sm={12}>
                 <Button
-                  type="button"
+                  style={style.w100}
+                  type="submit"
                   variant="contained"
                   size="medium"
                   color="secondary"
-                  className={(classes.margin, addContact)}
-                  // margin="0 auto"
-                  // display="block"
+                  className={classes.margin}
                 >
                   Add contact
                 </Button>
