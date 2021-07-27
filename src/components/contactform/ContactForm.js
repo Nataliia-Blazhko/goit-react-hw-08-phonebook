@@ -1,9 +1,23 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { addContact } from '../../redux/phonebook/phonebook-actions';
 import { addContact } from '../../redux/phonebook/phonebook-operations';
+import TextField from '@material-ui/core/TextField';
 import { v4 as uuid } from 'uuid';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const styles = theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+});
 
 export class ContactForm extends Component {
   state = {
@@ -33,20 +47,41 @@ export class ContactForm extends Component {
     this.setState({ name: '', number: '' });
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+    this.addContact(this.state);
+    this.clearForm();
+  };
+
   render() {
+    const { classes } = this.props;
     return (
-      <div className="container">
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            this.addContact(this.state);
-            this.clearForm();
-          }}
-        >
-          <label htmlFor="name" className="subtitle">
-            Name
-          </label>
-          <input
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <form
+            onSubmit={this.onSubmit}
+            className={(classes.root, classes.form)}
+            noValidate
+            autoComplete="off"
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Name"
+                  variant="filled"
+                  onChange={this.handleInput}
+                  value={this.state.name}
+                  id="name"
+                  type="text"
+                  name="name"
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                  required
+                />
+              </Grid>
+              {/* <label htmlFor="name" className="subtitle"></label> */}
+              {/* <input
             onChange={this.handleInput}
             value={this.state.name}
             id="name"
@@ -55,23 +90,41 @@ export class ContactForm extends Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
-          />
-          <label htmlFor="number" className="subtitle">
+          /> */}
+              {/* <label htmlFor="number" className="subtitle">
             Number
-          </label>
-          <input
-            onChange={this.handleInput}
-            value={this.state.number}
-            id="number"
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-          />
-          <button className="addContact">Add contact</button>
-        </form>
-      </div>
+          </label> */}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Phone Number"
+                  variant="filled"
+                  onChange={this.handleInput}
+                  value={this.state.number}
+                  id="number"
+                  type="tel"
+                  name="number"
+                  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                  title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+                  required
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  type="button"
+                  variant="contained"
+                  size="medium"
+                  color="secondary"
+                  className={(classes.margin, addContact)}
+                  // margin="0 auto"
+                  // display="block"
+                >
+                  Add contact
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
     );
   }
 }
@@ -87,5 +140,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles, { withTheme: true })(ContactForm));
 ContactForm.propTypes = { addContact: PropTypes.func };

@@ -20,7 +20,7 @@ const UserMenu = ({ email, onLogout }) => {
         onClick={onLogout}
         variant="contained"
         size="medium"
-        color="secondary"
+        color="defaults"
         className={classes.margin}
       >
         Logout

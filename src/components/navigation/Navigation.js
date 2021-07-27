@@ -6,8 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  title: {
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  link: {
+    textDecoration: 'none',
     color: 'white',
+    marginRight: '20px',
+  },
+  activeLink: {
+    textDecoration: 'underline',
+    color: '#f50057',
   },
 }));
 
@@ -15,8 +25,12 @@ const Navigation = ({ isAuthenticated }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <NavLink to="/" exact className="link" activeClassName="active-link">
-        {' '}
+      <NavLink
+        to="/"
+        exact
+        className={classes.link}
+        activeClassName={classes.activeLink}
+      >
         <Typography variant="h6" className={classes.title}>
           Главная
         </Typography>
@@ -25,12 +39,11 @@ const Navigation = ({ isAuthenticated }) => {
         <NavLink
           to="/contacts"
           exact
-          className="link"
-          activeClassName="active-link"
+          className={classes.link}
+          activeClassName={classes.activeLink}
         >
-          {' '}
           <Typography variant="h6" className={classes.title}>
-            Телефонная книга{' '}
+            Телефонная книга
           </Typography>
         </NavLink>
       )}
