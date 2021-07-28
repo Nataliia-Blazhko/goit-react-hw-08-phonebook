@@ -96,7 +96,7 @@ export class Login extends Component {
               id="login-password"
               value={this.state.password}
               onChange={this.handleInput}
-              autoComplete="current-password"
+              autoComplete="on"
             />
             <Button
               type="submit"

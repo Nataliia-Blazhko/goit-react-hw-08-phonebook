@@ -3,6 +3,8 @@ import ContactListItem from './ContactListItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getContacts } from '../../redux/phonebook/phonebook-operations';
+import List from '@material-ui/core/List';
+import Grid from '@material-ui/core/Grid';
 
 export class ContactList extends Component {
   componentDidMount() {
@@ -10,17 +12,21 @@ export class ContactList extends Component {
   }
   render() {
     return (
-      <ul>
-        {this.props.loading ? (
-          <div>Идёт загрузка...</div>
-        ) : (
-          this.props.contacts
-            .filter(item =>
-              item.name.toLowerCase().includes(this.props.filter.toLowerCase()),
-            )
-            .map(item => <ContactListItem key={item.id} {...item} />)
-        )}
-      </ul>
+      <Grid container direction="row" justifyContent="center">
+        <List xs={12} md={6} style={{ width: '400px' }}>
+          {this.props.loading ? (
+            <div>Идёт загрузка...</div>
+          ) : (
+            this.props.contacts
+              .filter(item =>
+                item.name
+                  .toLowerCase()
+                  .includes(this.props.filter.toLowerCase()),
+              )
+              .map(item => <ContactListItem key={item.id} {...item} />)
+          )}
+        </List>
+      </Grid>
     );
   }
 }

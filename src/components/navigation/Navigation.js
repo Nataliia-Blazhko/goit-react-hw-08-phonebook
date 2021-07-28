@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none',
-    color: 'white',
+    color: '#ffffff99',
     marginRight: '20px',
   },
   activeLink: {
-    textDecoration: 'underline',
-    color: 'black',
+    textDecoration: 'none',
+    color: 'white',
   },
 }));
 

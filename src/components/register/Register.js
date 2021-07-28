@@ -114,6 +114,7 @@ export class Register extends Component {
                   value={this.state.password}
                   style={styles.input}
                   fullWidth
+                  autoComplete="on"
                 />
               </Grid>
               <Button

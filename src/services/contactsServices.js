@@ -6,7 +6,8 @@ export const getContactsQuery = async () => {
 };
 
 export const addContactQuery = async contact => {
-  await axios.post('/contacts', contact);
+  const { data } = await axios.post('/contacts', contact);
+  return data;
 };
 
 export const deleteContactQuery = async id => {

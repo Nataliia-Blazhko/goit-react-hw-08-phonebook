@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addContact } from '../../redux/phonebook/phonebook-operations';
 import TextField from '@material-ui/core/TextField';
-import { v4 as uuid } from 'uuid';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -34,7 +33,6 @@ export class ContactForm extends Component {
       alert(`${contact.number} is already in contacts`);
       return;
     }
-    // contact.id = uuid();
     this.props.addContact(contact);
     this.clearForm();
   };

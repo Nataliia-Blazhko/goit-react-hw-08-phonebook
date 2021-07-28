@@ -6,10 +6,11 @@ import { authSelectors } from '../../redux/auth';
 import MaterialAppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    backgroundColor: '#ae34eb',
+    backgroundColor: '#3f51b5',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -22,10 +23,12 @@ const AppBar = ({ isAuthenticated }) => {
   return (
     <div className={classes.root}>
       <MaterialAppBar position="static">
-        <Toolbar className={classes.appBar}>
-          <Navigation />
-          {isAuthenticated ? <UserMenu /> : <AuthNav />}
-        </Toolbar>
+        <Container>
+          <Toolbar className={classes.appBar}>
+            <Navigation />
+            {isAuthenticated ? <UserMenu /> : <AuthNav />}
+          </Toolbar>
+        </Container>
       </MaterialAppBar>
     </div>
   );
