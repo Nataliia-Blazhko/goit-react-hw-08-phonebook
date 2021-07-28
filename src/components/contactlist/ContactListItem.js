@@ -14,7 +14,7 @@ export class ContactListItem extends Component {
           onClick={() => deleteContact(id)}
           type="button"
         >
-          Delete
+          Удалить контакт
         </button>
       </li>
     );

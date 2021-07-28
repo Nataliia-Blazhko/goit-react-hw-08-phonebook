@@ -9,9 +9,13 @@ const styles = {
     paddingTop: '20px',
     paddingLeft: '20px',
   },
-  header: {
+  mainTitle: {
     textAlign: 'center',
     margin: '20px 0',
+  },
+  subtitle: {
+    textAlign: 'center',
+    margin: '10px 0',
   },
 };
 
@@ -19,11 +23,13 @@ export class Contacts extends Component {
   render() {
     return (
       <div style={styles.div}>
-        <Typography variant="h4" style={styles.header}>
+        <Typography variant="h3" style={styles.mainTitle}>
           Телефонная книга
         </Typography>
         <ContactForm />
-        <h2>Contacts</h2>
+        <Typography variant="h5" style={styles.subtitle}>
+          Контакти
+        </Typography>
         <Filter />
         <ContactList />
       </div>

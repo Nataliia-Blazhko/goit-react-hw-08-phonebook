@@ -19,12 +19,6 @@ const styles = theme => ({
   },
 });
 
-const style = {
-  w100: {
-    width: '100%',
-  },
-};
-
 export class ContactForm extends Component {
   state = {
     name: '',
@@ -40,7 +34,7 @@ export class ContactForm extends Component {
       alert(`${contact.number} is already in contacts`);
       return;
     }
-    contact.id = uuid();
+    // contact.id = uuid();
     this.props.addContact(contact);
     this.clearForm();
   };
@@ -74,7 +68,7 @@ export class ContactForm extends Component {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Name"
+                  label="Имя"
                   variant="filled"
                   onChange={this.handleInput}
                   value={this.state.name}
@@ -86,23 +80,9 @@ export class ContactForm extends Component {
                   required
                 />
               </Grid>
-              {/* <label htmlFor="name" className="subtitle"></label> */}
-              {/* <input
-            onChange={this.handleInput}
-            value={this.state.name}
-            id="name"
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-          /> */}
-              {/* <label htmlFor="number" className="subtitle">
-            Number
-          </label> */}
               <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Phone Number"
+                  label="Номер телефону"
                   variant="filled"
                   onChange={this.handleInput}
                   value={this.state.number}
@@ -116,14 +96,14 @@ export class ContactForm extends Component {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <Button
-                  style={style.w100}
                   type="submit"
                   variant="contained"
                   size="medium"
                   color="secondary"
                   className={classes.margin}
+                  fullWidth
                 >
-                  Add contact
+                  Добавить контакт
                 </Button>
               </Grid>
             </Grid>

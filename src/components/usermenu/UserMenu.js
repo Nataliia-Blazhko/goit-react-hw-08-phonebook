@@ -5,8 +5,9 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    color: 'secondary',
+  span: {
+    marginRight: '10px',
+    fontSize: '18px',
   },
 }));
 
@@ -14,16 +15,15 @@ const UserMenu = ({ email, onLogout }) => {
   const classes = useStyles();
   return (
     <div>
-      <span>Welcome, {email}</span>
+      <span className={classes.span}>Добро пожаловать, {email}</span>
       <Button
         type="button"
         onClick={onLogout}
         variant="contained"
         size="medium"
-        color="default"
-        className={classes.margin}
+        color="secondary"
       >
-        Logout
+        Выйти
       </Button>
     </div>
   );

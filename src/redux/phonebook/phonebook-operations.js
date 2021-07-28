@@ -20,7 +20,9 @@ export const addContact = contact => dispatch => {
   dispatch(addContactRequest());
 
   addContactQuery(contact)
-    .then(() => dispatch(addContactSuccess(contact)))
+    .then(data => {
+      dispatch(addContactSuccess(data));
+    })
     .catch(error => dispatch(addContactError()));
 };
 

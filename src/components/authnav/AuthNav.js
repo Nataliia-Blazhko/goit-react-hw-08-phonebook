@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
   activeLink: {
     textDecoration: 'underline',
-    color: '#f50057',
+    color: 'black',
   },
 }));
 

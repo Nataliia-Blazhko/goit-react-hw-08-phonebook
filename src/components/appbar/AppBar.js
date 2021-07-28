@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    backgroundColor: '#6674e9',
+    backgroundColor: '#ae34eb',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

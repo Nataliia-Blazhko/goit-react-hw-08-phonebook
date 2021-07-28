@@ -32,23 +32,22 @@ class App extends Component {
               redirectTo="/contacts"
             />
             <PublicRoute
-              exact
               path="/register"
               component={Register}
               redirectTo="/contacts"
+              restricted
             />
             <PublicRoute
-              exact
               path="/login"
               redirectTo="/contacts"
               restricted
               component={Login}
             />
             <PrivateRoute
-              exact
               path="/contacts"
               component={Contacts}
-              redirectTo="/login"
+              redirectTo="/"
+              restricted
             />
           </Switch>
         </Suspense>

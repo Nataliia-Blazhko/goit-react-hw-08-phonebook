@@ -12,7 +12,7 @@ export class ContactList extends Component {
     return (
       <ul>
         {this.props.loading ? (
-          <div>Loading...</div>
+          <div>Идёт загрузка...</div>
         ) : (
           this.props.contacts
             .filter(item =>
